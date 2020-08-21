@@ -20,6 +20,8 @@ function App() {
   const [contentJson, setContentJson] = useState();
   const [designersJson, setDesignersJson] = useState();
   const [developersJson, setDevelopersJson] = useState();
+  const [sadaJson, setSadaJson] = useState();
+  const [slavaJson, setSlavaJson] = useState();
 
   useEffect(() => {
     axios
@@ -56,6 +58,20 @@ function App() {
       )
       .then((res) => {
         setDevelopersJson(res.data);
+      });
+    axios
+      .get(
+        "https://spreadsheets.google.com/feeds/cells/1Z4AbwcBShKFdvWZmgB5ox59GW1MklFAFATxuY4Kv6sU/7/public/full?alt=json"
+      )
+      .then((res) => {
+        setSadaJson(res.data);
+      });
+    axios
+      .get(
+        "https://spreadsheets.google.com/feeds/cells/1Z4AbwcBShKFdvWZmgB5ox59GW1MklFAFATxuY4Kv6sU/8/public/full?alt=json"
+      )
+      .then((res) => {
+        setSlavaJson(res.data);
       });
   }, []);
 
@@ -136,6 +152,8 @@ function App() {
       ...getWorkersToManagers(developersJson),
       ...getWorkersToManagers(contentJson),
       ...getWorkersToManagers(designersJson),
+      ...getWorkersToManagers(sadaJson),
+      ...getWorkersToManagers(slavaJson),
     ].map((worker) => ({
       ...worker,
       worker: worker.worker.trim(),
