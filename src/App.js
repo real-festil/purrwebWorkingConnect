@@ -161,7 +161,11 @@ function App() {
       <header>
         <div>
           {tabs.map((tab) => (
-            <button key={tab} onClick={() => setActiveTab(tab)}>
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              style={{ background: `${activeTab === tab ? "gray" : "#fff"}` }}
+            >
               {tab}
             </button>
           ))}
