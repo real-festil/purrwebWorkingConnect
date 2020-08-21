@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import managersJson from "./tableManager.json";
 import testersJson from "./tableTesters.json";
@@ -62,6 +61,7 @@ function App() {
       .map((mng) => mng.find((x) => x === worker))
       .map((q, i) => {
         if (typeof q !== "undefined") return managersList[i];
+        else return undefined;
       })
       .filter((x) => x !== undefined);
     return { worker, managers: a };
